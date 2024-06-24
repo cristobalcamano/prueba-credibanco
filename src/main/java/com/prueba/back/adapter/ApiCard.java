@@ -18,6 +18,11 @@ import com.prueba.back.application.port.in.RechargeBalanceIn;
 import com.prueba.back.domain.BankCardDomain;
 import com.prueba.back.exeption.BusinessExeption;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+
 @RestController
 @RequestMapping("${path-card}")
 public class ApiCard {
@@ -42,8 +47,15 @@ public class ApiCard {
 		this.consultBalanceIn=consultBalanceIn;
 	}
 
+	@Operation(summary = "Generar una tarjeta", description = "Generar una tarjeta a partir del codigo ")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "302", description = "Operación exitosa"),
+        @ApiResponse(responseCode = "404", description = "Error controlado"),
+        @ApiResponse(responseCode = "500", description = "Error del servidor")
+    })
 	@GetMapping(path = "/{productId}/number")
-	public ResponseEntity<?> generateCard(@PathVariable("productId") Long productId){
+	public ResponseEntity<?> generateCard(@Parameter(description = "Numero del tipo de producto", required = true)
+	@PathVariable("productId") Long productId){
 		try {
 			String tarjeta = generateCardIn.create(productId);
 			return new ResponseEntity(tarjeta,HttpStatus.FOUND);
@@ -54,6 +66,12 @@ public class ApiCard {
 		}
 	}
 	
+	@Operation(summary = "Activar tarjeta tarjeta", description = "Activar una tarjeta apartir de su numero de tarjeta")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "302", description = "Operación exitosa"),
+        @ApiResponse(responseCode = "404", description = "Error controlado"),
+        @ApiResponse(responseCode = "500", description = "Error del servidor")
+    })
 	@PostMapping(path = "/enroll")
 	public ResponseEntity<?> activeCard(@RequestBody BankCardDomain cardBank){
 		try {
@@ -66,8 +84,15 @@ public class ApiCard {
 		}
 	}
 	
+	@Operation(summary = "Bloquear tarjeta", description = "Bloquear una tarjeta apartir de su numero de tarjeta")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "302", description = "Operación exitosa"),
+        @ApiResponse(responseCode = "404", description = "Error controlado"),
+        @ApiResponse(responseCode = "500", description = "Error del servidor")
+    })
 	@DeleteMapping(path = "/{cardId}")
-	public ResponseEntity<?> BlockCard(@PathVariable("cardId") String cardId){
+	public ResponseEntity<?> BlockCard(@Parameter(description = "Numero de la tarjeta", required = true)
+			@PathVariable("cardId") String cardId){
 		try {
 			Boolean tarjeta = blockCardIn.BlockCard(cardId);
 			return new ResponseEntity(tarjeta,HttpStatus.FOUND);
@@ -78,6 +103,12 @@ public class ApiCard {
 		}
 	}
 	
+	@Operation(summary = "Recargar tarjeta", description = "Recarrgar el balance de una tarjeta apartir de su numero de tarjeta")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "302", description = "Operación exitosa"),
+        @ApiResponse(responseCode = "404", description = "Error controlado"),
+        @ApiResponse(responseCode = "500", description = "Error del servidor")
+    })
 	@PostMapping(path = "/balance")
 	public ResponseEntity<?> rechargeCard(@RequestBody BankCardDomain cardBank) throws BusinessExeption{
 		try {
@@ -90,8 +121,15 @@ public class ApiCard {
 		}
 	}
 	
+	@Operation(summary = "Consultar el balance de la tarjeta", description = "Se consulta el balance apartir del numero de tarjeta")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "302", description = "Operación exitosa"),
+        @ApiResponse(responseCode = "404", description = "Error controlado"),
+        @ApiResponse(responseCode = "500", description = "Error del servidor")
+    })
 	@GetMapping(path = "/balance/{cardId}")
-	public ResponseEntity<?> checkBalance(@PathVariable("cardId") String cardId){
+	public ResponseEntity<?> checkBalance(@Parameter(description = "Numero de la tarjeta", required = true)
+	@PathVariable("cardId") String cardId){
 		try {
 			Double response = consultBalanceIn.consultBalance(cardId);
 			return new ResponseEntity(response,HttpStatus.FOUND);

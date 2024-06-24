@@ -34,7 +34,9 @@ CREATE TABLE bank_card (
     expiration VARCHAR(255),
     status_fk INT,
     product_type_fk INT,
-    balance DECIMAL(10, 2)  
+    balance DECIMAL(10, 2),
+    FOREIGN KEY (status_fk) REFERENCES status_tbl(id),
+    FOREIGN KEY (product_type_fk) REFERENCES producto_type(id)
 );
 
 --Creación de la tabla en de datos de rompimiento entre la tarjeta y la moneda

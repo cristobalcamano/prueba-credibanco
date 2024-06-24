@@ -16,6 +16,12 @@ public class CheckTransactionUseCase implements CheckTransactionIn{
 		this.checkTransactionOut=checkTransactionOut;
 	}
 	
+	/**
+	 * Metodo para buscar una tarjeta por su numero
+	 * 
+	 * @param Number Corresponde al numer de tarjeta
+	 * @return BankCardDomain se devolvera el numero de tarjeta
+	 */
 	@Override
 	public TransactionBuyDomain checkTransaction(String transactionId) throws BusinessExeption{
 		TransactionBuyDomain response = checkTransactionOut.checkTransaction(transactionId);

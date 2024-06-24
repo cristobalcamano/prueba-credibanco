@@ -20,6 +20,12 @@ public class ActivateCardUseCase implements ActivateCardIn{
 		this.cardBankOut=cardBankOut;
 	}
 
+	/**
+	 * Metodo para activar una tarjeta por su numero
+	 * 
+	 * @param Number Corresponde al numer de tarjeta
+	 * @return Boolean se devolvera el resultado de la transaccion ejm true
+	 */
 	@Override
 	public Boolean activateCard(String number) throws BusinessExeption{
 		cardBankOut.findCardBank(number);

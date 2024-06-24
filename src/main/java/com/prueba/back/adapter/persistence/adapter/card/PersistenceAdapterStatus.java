@@ -18,6 +18,11 @@ public class PersistenceAdapterStatus implements StatusCardOut{
 		this.bankCardRepository = bankCardRepository;
 	}
 	
+	/**
+	 * Metodo para activar una tarjeta apartir de su numero de tarjeta en BBDD
+	 * 
+	 * @param cardId numero de tarjeta
+	 */
 	@Override
 	public void activateCard(String cardId){
 		
@@ -29,6 +34,11 @@ public class PersistenceAdapterStatus implements StatusCardOut{
 		bankCardRepository.save(bce);
 	}
 
+	/**
+	 * Metodo para bloquear una tarjeta apartir de su numero de tarjeta en BBDD
+	 * 
+	 * @param cardId numero de tarjeta
+	 */
 	@Override
 	public void blockCard(String cardId) {
 		BankCardEntity 
@@ -39,6 +49,12 @@ public class PersistenceAdapterStatus implements StatusCardOut{
 		bankCardRepository.save(bce);
 	}
 
+	/**
+	 * Metodo para validar si existe una tarjeta con un estado espesifico en BBDD
+	 * 
+	 * @param cardId numero de tarjeta
+	 * @param status identificador del estado en BBDDD
+	 */
 	@Override
 	public void validateStatusCard(String cardId, Long status) throws BusinessExeption{
 		bankCardRepository.validateStatusCard(cardId, status)

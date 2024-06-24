@@ -24,7 +24,7 @@ public class PersistenceAdapterBankCard implements CardBankOut, RechargeBalanceO
 	}
 
 	/**
-	 * Metodo genera una nueva tarjeta 
+	 * Metodo genera una nueva tarjeta en BBDD
 	 * 
 	 * @param productType Corresponde al tipo de producto del cual 
 	 * 		sera la tarjeta Debito o Credito
@@ -51,7 +51,7 @@ public class PersistenceAdapterBankCard implements CardBankOut, RechargeBalanceO
 	}
 
 	/**
-	 * Metodo para buscar una tarjeta por su numero
+	 * Metodo para buscar una tarjeta por su numero en BBDD
 	 * 
 	 * @param Number Corresponde al numer de tarjeta
 	 * @return BankCardDomain se devolvera el numero de tarjeta
@@ -65,6 +65,11 @@ public class PersistenceAdapterBankCard implements CardBankOut, RechargeBalanceO
 		return bce;
 	}
 
+	/**
+	 * Metodo para recargar el balance de una tarjeta en BBDD
+	 * 
+	 * @param BankCardDomain Objeto que contiene el nnumero de tarjetaa recargar
+	 */
 	@Override
 	public void rechargeBalance(BankCardDomain bankCardDomain) {
 		BankCardEntity 
@@ -76,6 +81,12 @@ public class PersistenceAdapterBankCard implements CardBankOut, RechargeBalanceO
 		
 	}
 
+	/**
+	 * Metodo para recargar el balance de una tarjeta en BBDD
+	 * 
+	 * @param cardId Objeto que contiene el nnumero de tarjetaa recargar
+	 * @param newBalance Objeto que contiene el nnumero de tarjetaa recargar
+	 */
 	@Override
 	public void changeBalance(String cardId, Double newBalance) throws BusinessExeption {
 		BankCardEntity 

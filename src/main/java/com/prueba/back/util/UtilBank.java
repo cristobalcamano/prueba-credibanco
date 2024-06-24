@@ -60,7 +60,7 @@ public class UtilBank {
 		
 		Duration duration = Duration.between(validateDate, now);
 
-        return (duration.toHours() <= 24);
+        return (duration.toHours() >= 24);
 	}
 
 }

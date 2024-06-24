@@ -9,18 +9,24 @@ import com.prueba.back.exeption.BusinessExeption;
 import com.prueba.back.util.EnviromentGlobal;
 
 @Component
-public class GenerateCardNumberCase implements GenerateCardIn{
+public class GenerateCardNumberUseCase implements GenerateCardIn{
 	
 	private final CardBankOut cardBankOut;
 	
 	private final ProductTypeOut productTypeOut;
 
-	public GenerateCardNumberCase(CardBankOut cardBankOut, ProductTypeOut productTypeOut) {
+	public GenerateCardNumberUseCase(CardBankOut cardBankOut, ProductTypeOut productTypeOut) {
 		super();
 		this.cardBankOut = cardBankOut;
 		this.productTypeOut=productTypeOut;
 	}
 
+	/**
+	 * Metodo para crear una tarjeta 
+	 * 
+	 * @param productType Corresponde al numero del tipo de producto
+	 * @return String se devolvera el numero de tarjeta
+	 */
 	@Override
 	public String create(Long productType) throws BusinessExeption{
 		

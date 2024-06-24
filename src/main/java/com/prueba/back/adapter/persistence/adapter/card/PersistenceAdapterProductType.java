@@ -18,6 +18,12 @@ public class PersistenceAdapterProductType implements ProductTypeOut{
 		this.productTypeRepository = productTypeRepository;
 	}
 
+	/**
+	 * Metodo para consultar el tipo de producto por du identificador en BBDD
+	 * 
+	 * @param number identificador del tipo de producto en BBDD
+	 * @return ProductTypeDomain objeto representativo del tipo de producto 
+	 */
 	@Override
 	public ProductTypeDomain validateProductType(Long number) throws BusinessExeption{
 		ProductTypeDomain producto = productTypeRepository.findById(number)

@@ -29,6 +29,12 @@ public class AnulationTransactionsUseCase implements AnulationTransactionIn{
 		this.transactionOut=transactionOut;
 	}
 
+	/**
+	 * Metodo para la anulación de una tarjeta
+	 * 
+	 * @param TransactionBuyDomain Corresponde al numer de tarjeta y numero de transaccion
+	 * @return Boolean El resultado de la operacion ejm true
+	 */
 	@Override
 	public Boolean anulationTransaction(TransactionBuyDomain transactionBuyDomain) throws BusinessExeption {
 		//validar que exista la tarjeta

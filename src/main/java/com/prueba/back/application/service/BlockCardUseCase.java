@@ -17,6 +17,12 @@ public class BlockCardUseCase implements BlockCardIn{
 		this.cardBankOut = cardBankOut;
 	}
 	
+	/**
+	 * Metodo para bloquear una tarjeta por su numero
+	 * 
+	 * @param Number Corresponde al numer de tarjeta
+	 * @return Boolean Resultado de la operacion ejem true
+	 */
 	@Override
 	public Boolean BlockCard(String number) throws BusinessExeption{
 		cardBankOut.findCardBank(number);

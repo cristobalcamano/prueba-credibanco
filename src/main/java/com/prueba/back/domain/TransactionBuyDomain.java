@@ -2,16 +2,28 @@ package com.prueba.back.domain;
 
 import java.time.LocalDateTime;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
+@Schema(description = "Representa un usuario en el sistema")
 public class TransactionBuyDomain {
 	
+	@Schema(description = "Identificador de la transaccion en BBDD", example = "1")
 	private Long id;
+	@Schema(description = "Detalle de la compra", example = "Prueba")
     private String detail;
+	@Schema(description = "Numero de la tarjeta", example = "1234567890123456")
     private String cardId;
+	@Schema(description = "Descripcion de la compra", example = "prueba")
     private String description;
+	@Schema(description = "Numero de la transaccion", example = "1234567890")
     private String transactionId;
+	@Schema(description = "Estado de la compra", example = "Active")
     private StatusDomain statusDomain;
+	@Schema(description = "Tarjeta", example = "1234567890")
     private BankCardDomain bankCardDomain;
+	@Schema(description = "Valor de la compra", example = "20.3")
     private Double salesValue;
+	@Schema(description = "Creación de la transaccion", example = "23/06/2024")
     private LocalDateTime createdDate;
     
 	public Long getId() {

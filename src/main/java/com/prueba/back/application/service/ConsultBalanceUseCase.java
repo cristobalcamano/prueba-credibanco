@@ -16,7 +16,12 @@ public class ConsultBalanceUseCase implements ConsultBalanceIn{
 		this.cardBankOut=cardBankOut;
 	}
 	
-	
+	/**
+	 * Metodo para consultar el balance de una tarjeta por su numero
+	 * 
+	 * @param cardId Corresponde al numer de tarjeta
+	 * @return Double se devolvera el resultado de la operacion
+	 */
 	@Override
 	public Double consultBalance(String cardId) throws BusinessExeption {
 		BankCardDomain bankCardDomain = cardBankOut.findCardBank(cardId);

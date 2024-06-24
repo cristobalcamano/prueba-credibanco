@@ -27,6 +27,12 @@ public class PersistenceAdapterTransaction implements BuyTransactionOut, CheckTr
 		this.transactionRepository=transactionRepository;
 	}
 
+	/**
+	 * Metodo para buscar una transaccion apartir del su transaccion id en BBDD
+	 * 
+	 * @param transactionId numero identificador de la transaccion
+	 * @return TransactionBuyDomain detalle de la transaccion 
+	 */
 	@Override
 	public TransactionBuyDomain checkTransaction(String transactionId) throws BusinessExeption{
 		return transactionRepository.findByTransactionId(transactionId)
@@ -34,10 +40,17 @@ public class PersistenceAdapterTransaction implements BuyTransactionOut, CheckTr
 		.orElseThrow(() -> new BusinessExeption("El tipo de producto " + transactionId + " no encontrado"));
 	}
 
+	/**
+	 * Metodo para realizar una transaccion en BBDD
+	 * 
+	 * @param bankCardDomain Detallde de la transaccion
+	 * @param idTransaction numero identificador de la tarjeta
+	 * @return String numero de la transaccion 
+	 */
 	@Override
-	public String buyTransaction(BankCardDomain bankCardDomain, Long idTransaction) {
+	public String buyTransaction(BankCardDomain bankCardDomain, Long idCard) {
 		TransactionEntity entity = new TransactionEntity();
-		entity.setCard(new BankCardEntity(idTransaction));
+		entity.setCard(new BankCardEntity(idCard));
 		entity.setSaleValue(bankCardDomain.getPrice());
 		entity.setStatudId(new StatusEntity(EnviromentGlobal.ACTIVE_STATUS));
 		String transactionId = UtilBank.generateTenNumbersRandom();
@@ -47,6 +60,11 @@ public class PersistenceAdapterTransaction implements BuyTransactionOut, CheckTr
 		return transactionId;
 	}
 
+	/**
+	 * Metodo para anular una transaccion en BBDD
+	 * 
+	 * @param transactionBuyDomain detalle de la transaccion
+	 */
 	@Override
 	public void anulationTransaction(TransactionBuyDomain transactionBuyDomain) {
 		
@@ -55,6 +73,12 @@ public class PersistenceAdapterTransaction implements BuyTransactionOut, CheckTr
 		transactionRepository.save(tr);
 	}
 
+	/**
+	 * Metodo para validar una transaccion apartir del un estado en BBDD
+	 * 
+	 * @param transactionId numero identificador de la transaccion
+	 * @return status Estado de la transaccion
+	 */
 	@Override
 	public TransactionBuyDomain validateStatusTransaction(String transactionId, Long status) throws BusinessExeption{
 		return transactionRepository.validateStatusTransaction(transactionId, status)

@@ -25,6 +25,12 @@ public class BuyTransactionUseCase implements BuyTransactionIn{
 		this.statusCardOut=statusCardOut;
 	}
 
+	/**
+	 * Metodo para realizar una compra
+	 * 
+	 * @param BankCardDomain Corresponde a la informacion de la transaccion
+	 * @return String se devolvera el numero de la transaccion
+	 */
 	@Override
 	public String buyTransaction(BankCardDomain bankCardDomain) throws BusinessExeption {
 		

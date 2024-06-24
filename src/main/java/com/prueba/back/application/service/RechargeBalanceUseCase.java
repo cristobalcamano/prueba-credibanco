@@ -18,6 +18,12 @@ public class RechargeBalanceUseCase implements RechargeBalanceIn{
 		this.cardBankOut=cardBankOut;
 	}
 
+	/**
+	 * Metodo para buscar una tarjeta por su numero
+	 * 
+	 * @param Number Corresponde al numer de tarjeta
+	 * @return BankCardDomain se devolvera el numero de tarjeta
+	 */
 	@Override
 	public Boolean rechargeBalance(BankCardDomain bankCardDomain) throws BusinessExeption{
 		cardBankOut.findCardBank(bankCardDomain.getCardId());
